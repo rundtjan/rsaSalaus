@@ -1,0 +1,44 @@
+# Määrittely
+
+## Ohjelmointikielet  
+
+Tulen itse käyttämään Pythonia tässä projektissa. Olen tottunut itse 
+käyttämään Pythonia, Javaa ja Nodejs. C++ pystyn lukemaan, mutten ehkä 
+lähtisi sitä vertaisarvioimaan.
+
+## Algoritmit ja tietorakenteet
+
+-- Minun pitää ensiksi tutkia aihealuetta enemmän, että mitä 
+mahdollisesti tulen tarvitsemaan, palaan ja kehitän tätä osuutta enemmän 
+tulevaisuudessa.
+
+Ymmärsin Wikipediasta, että ainakin tulee tutustua Extended Euclidian 
+algoritmiin.
+
+## Ongelmanratkaisu
+
+Tulen tässä projektissa toteuttamaan omaa RSA-salausta. Käyttäjän tulisi 
+pystyä lataamaan omat julkiset ja yksityiset avaimet, ja lähettämään 
+järjestelmässä viestin toiselle käyttäjälle, käyttäen tämän julkista 
+avainta. Käyttäjän pitäisi myös pystyä lukemaan itselleen lähettämiä 
+salattuja viestejä.
+
+## Aika- ja tilavaativuudet
+
+Sama tilanne kuin yllä tietorakenteiden kanssa: pitää tutustua enemmän 
+aihealueeseen.
+
+## Lähteet
+
+Ainakin:  
+[Wikipedia: RSA](https://fi.wikipedia.org/wiki/RSA)
+[Tietoa Extended Euclidian 
+algoritmista](https://brilliant.org/wiki/extended-euclidean-algorithm/)
+
+## Opinto-ohjelma
+
+TKT
+
+## Dokumentaatiossa ja määrittelyssä käytetty kieli  
+
+Suomi
