@@ -8,7 +8,7 @@ kansiosta.
 
 ## Viikkoraportit
 
-Löytyy ...
+Löytyy [tästä](https://github.com/rundtjan/rsaSalaus/tree/master/viikkoraportit) kansiosta.
 
 ## Ohjeet  
 
