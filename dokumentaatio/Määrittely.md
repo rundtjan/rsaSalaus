@@ -40,6 +40,8 @@ Ainakin:
 (https://en.wikipedia.org/wiki/RSA_(cryptosystem))
 [Tietoa Extended Euclidian 
 algoritmista](https://brilliant.org/wiki/extended-euclidean-algorithm/)
+[Oikean bittipitoisuuden 
+löytäminen](https://www.sciencedirect.com/topics/engineering/binary-multiplication#:~:text=In%20general%2C%20an%20N%20%C3%97,to%20form%20the%20partial%20products.)
 
 ## Opinto-ohjelma
 
