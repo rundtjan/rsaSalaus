@@ -1,4 +1,4 @@
-# SHA-salauksen salat
+# RSA-salauksen salat
 
 ## Dokumentaatio
 
