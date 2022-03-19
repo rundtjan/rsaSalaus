@@ -2,8 +2,7 @@
 
 ## Ohjelmointikielet  
 
-Tulen itse käyttämään Pythonia tässä projektissa. Olen tottunut itse 
-käyttämään Pythonia, Javaa ja Nodejs. C++ pystyn lukemaan, mutten ehkä 
+Tulen käyttämään Pythonia tässä projektissa. Olen tottunut käyttämään Pythonia, Javaa ja Nodejs. C++ pystyn lukemaan, mutten ehkä 
 lähtisi sitä vertaisarvioimaan.
 
 ## Algoritmit ja tietorakenteet
@@ -13,7 +12,9 @@ mahdollisesti tulen tarvitsemaan, palaan ja kehitän tätä osuutta enemmän
 tulevaisuudessa.
 
 Ymmärsin Wikipediasta, että ainakin tulee tutustua Extended Euclidian 
-algoritmiin.
+algoritmiin, täytyy myös kehittää tehokkaan algoritmin, joka löytää 
+kahden luvun 
+syt:tä.
 
 ## Ongelmanratkaisu
 
@@ -26,12 +27,17 @@ salattuja viestejä.
 ## Aika- ja tilavaativuudet
 
 Sama tilanne kuin yllä tietorakenteiden kanssa: pitää tutustua enemmän 
-aihealueeseen.
+aihealueeseen. Tällä hetkellä hieman epäselvää, miten aikavaatimusta 
+esim. määritellään, kun ei käsitellä tietty data-määrää suuruutta n 
+(kuten esim. aikavaatimus O(n)), vaan tavoitteena on esim. luoda 
+salausavaimen. Toivottavasti selkenee.
 
 ## Lähteet
 
 Ainakin:  
-[Wikipedia: RSA](https://fi.wikipedia.org/wiki/RSA)
+[Wikipedia: RSA, fi](https://fi.wikipedia.org/wiki/RSA)
+[Wikipedia: RSA, eng] 
+(https://en.wikipedia.org/wiki/RSA_(cryptosystem))
 [Tietoa Extended Euclidian 
 algoritmista](https://brilliant.org/wiki/extended-euclidean-algorithm/)
 
