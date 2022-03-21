@@ -1,24 +1,26 @@
 import random
+import time
 from miller_rabin import miller_rabin
 
-def dec_from_bin(bin, length):
-    dec = 0
-    for i in range(length):
-        dec += bin[i] * pow(2, i)
-    print(dec)
-    return dec
+def random_prime(min_max):
+#number of iterations from https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite.
+    (min, max) = min_max
+    while(True):
+        n = random.randrange(min,max)
+        if miller_rabin(n,40): break
+    return n
 
-def random_prime(length):   
-    
-    for _ in range(4):
-        to_test = [0] * length
-        to_test[0] = 1
-        to_test[length-1] = 1
-        for i in range(1, length-1):
-            to_test[i] = random.randint(0,1)
-        print(to_test)
-        to_test = dec_from_bin(to_test, length)
-        #print(miller_rabin(to_test, 20))
-    
+def min_max(length,first_number):
+    min = pow(2, length)
+    max = pow(2, length+1)-1
+    if first_number:
+        min //= first_number
+        min += pow(10, 10)
+        max //= first_number
+    return (min,max)
 
-random_prime(1026)
+def get_prime_numbers(length_of_product):
+    half_plus_length = length_of_product//2 + length_of_product//20
+    p = random_prime(min_max(half_plus_length,None))
+    q = random_prime(min_max(length_of_product,p))
+    return (p,q)
