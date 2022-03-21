@@ -1,6 +1,7 @@
 # RSA-salauksen salat
 
 ![GitHub Actions](https://github.com/rundtjan/rsaSalaus/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/rundtjan/rsaSalaus/branch/master/graph/badge.svg?token=NISP3LBYZW)](https://codecov.io/gh/rundtjan/rsaSalaus)
 
 ## Dokumentaatio
 
