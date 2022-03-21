@@ -1,4 +1,4 @@
-from lambda_n import gcd
+from .lambda_n import gcd
 
 def find_e(l_n):
     if l_n > pow(2,19):

@@ -1,6 +1,5 @@
 import random
-import time
-from miller_rabin import miller_rabin
+from .miller_rabin import miller_rabin
 
 def random_prime(min_max):
 #number of iterations from https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite.

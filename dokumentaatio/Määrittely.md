@@ -27,7 +27,7 @@ Ainakin:
 [Suurimman yhteisen tekijän löytäminen](https://brilliant.org/wiki/extended-euclidean-algorithm/)
 [Myös suurimman yhteisen tekijän löytäminen](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)
 [Wikipedia: Miller-Rabin](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
-[Ymmärrettävämpi selitys Miller-Rabinista](https://programmingpraxis.files.wordpress.com/2012/09/primenumbers.pdf)
+[Aiheesta montako iteraatiota kannattaa Miller-Rabinissa tehdä](https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite)
 
 
 ## Opinto-ohjelma

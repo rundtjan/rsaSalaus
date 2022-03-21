@@ -32,5 +32,3 @@ def miller_rabin(n, k):
             break
 
     return result
-
-miller_rabin(82589931,3)
