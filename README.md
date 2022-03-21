@@ -1,6 +1,6 @@
 # RSA-salauksen salat
 
-![GitHub Actions](https://github.com/rundjan/rsaSalaus/workflows/CI/badge.svg)
+![GitHub Actions](https://github.com/rundtjan/rsaSalaus/workflows/CI/badge.svg)
 
 ## Dokumentaatio
 
