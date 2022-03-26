@@ -4,10 +4,10 @@ from .find_e import find_e
 
 def create_rsa_key(length):
     """Funktio, joka tuottaa rsa-avaimen.
-    
+
     Parametrit:
         Avaimen toivottu bittipituus.
-        
+
     Palautusarvo:
         Monikko, jossa avaimeen kuuluvat osiot n ja e.
     """

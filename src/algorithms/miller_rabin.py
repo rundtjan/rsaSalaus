@@ -2,19 +2,21 @@ import random
 
 def test_for_prime(n, d, r):
     """Funktio, joka kokeilee eri arvoja 'a' vastaan, että onko luku alkuluku.
-    
+
     Parametrit:
         Kokonaisluku n - luku jota testataan.
         Kokonaisluku d - saadaan Miller-Rabin:in alkupuolesta. Yhtälöstä n-1 = 2^r * d
-        Kokonaisluku r - saadaan samasta yhtälöstä kuin d (yllä). Määrittelee, montako kierrosta testataan lukua.
+        Kokonaisluku r - saadaan samasta yhtälöstä kuin d (yllä). Määrittelee,
+        montako kierrosta testataan lukua.
 
     Palautusarvo:
-        Boolean - True jos luku näytti alkuluvulta, kun testataan lukua 'a' vastaan. False jos selvästi ei ole alkuluku.     
+        Boolean - True jos luku näytti alkuluvulta, kun testataan lukua 'a' vastaan.
+        False jos selvästi ei ole alkuluku.
     """
 
     a = random.randrange(2, n-2)
     x = pow(a, d, n)
-    if x == 1 or x == n-1:
+    if x in(1, n - 1):
         return True
     for _ in range(r-1):
         x = pow(x, 2, n)
@@ -24,22 +26,27 @@ def test_for_prime(n, d, r):
 
 
 def miller_rabin(n, k):
-    """Funktio, joka toteuttaa Miller-Rabin:in algoritmi. Eli testaa, onko luku todennäköisesti alkuluku.
-    
+    """Funktio, joka toteuttaa Miller-Rabin:in algoritmi. Eli testaa,
+        onko luku todennäköisesti alkuluku.
+
     Parametrit:
         Kokonaisluku n - luku jota testataan.
-        Kokonaisluku k - positiivinen luku, joka säätää algoritmin tarkkuutta. Esim. 40 on sopivan suuri luku. Virhetodennäköisyys 1/(4^k).
+        Kokonaisluku k - positiivinen luku, joka säätää algoritmin tarkkuutta.
+        Esim. 40 on sopivan suuri luku. Virhetodennäköisyys 1/(4^k).
 
     Palautusarvo:
-        Boolean: True jos luku on todennäköisesti alkuluku. False jos luku varmasti ei ole alkuluku.
+        Boolean: True jos luku on todennäköisesti alkuluku.
+        False jos luku varmasti ei ole alkuluku.
     """
 
-    if n>0 and n <=3:return True
-    if n % 2 == 0: return False 
+    if 0< n <=3:
+        return True
+    if n % 2 == 0:
+        return False
 
-    nMin1 = n - 1
-    r = 0 
-    d = nMin1
+    n_min_1 = n - 1
+    r = 0
+    d = n_min_1
     result = True
 
     while d % 2 == 0:
