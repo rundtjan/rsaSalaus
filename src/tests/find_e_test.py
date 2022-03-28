@@ -14,3 +14,6 @@ class TestFindE(unittest.TestCase):
         rand_int = rand.randint(1234134134,123412341241234)
         e = find_e(rand_int)
         self.assertEqual(gcd(rand_int,e), 1)
+        rand_int = rand.randint(123,1234)
+        e = find_e(rand_int)
+        self.assertEqual(gcd(rand_int, e), 1)
