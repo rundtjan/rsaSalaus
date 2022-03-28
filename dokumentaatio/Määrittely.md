@@ -8,7 +8,7 @@ Tulen käyttämään Pythonia tässä projektissa. Olen tottunut käyttämään 
 
 -- Minun pitää ensiksi tutkia aihealuetta enemmän, että mitä mahdollisesti tulen tarvitsemaan, palaan ja kehitän tätä osuutta enemmän  tulevaisuudessa.
 
-Algoritmit ainakin: Miller-Rabin (aikavaaatimus wikipedian mukaan O(k log^3 n), jolla voi testata, että onko satunnaisesti luotu luku alkuluku. Ymmärsin, että täytyy myös kehittää tehokkaan algoritmin, joka löytää kahden luvun syt:tä.
+Algoritmit ainakin: Miller-Rabin (aikavaaatimus wikipedian mukaan O(k log^3 n), jolla voi testata, että onko satunnaisesti luotu luku alkuluku. Ymmärsin, että täytyy myös kehittää tehokkaan algoritmin, joka löytää kahden luvun syt:tä - Eukleideen algoritmi. Täytyy myös löytää modulaariaritmetiikan käänteisluku, josta muodostuu yksityinen avain - ja siihen auttaa laajennettu Eukleideen algoritmi.
 
 ## Ongelmanratkaisu
 
@@ -25,7 +25,8 @@ Ainakin:
 [Wikipedia: RSA, fi](https://fi.wikipedia.org/wiki/RSA)
 [Wikipedia: RSA, eng](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
 [Suurimman yhteisen tekijän löytäminen](https://brilliant.org/wiki/extended-euclidean-algorithm/)
-[Myös suurimman yhteisen tekijän löytäminen](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)
+[Eukleideen algoritmista](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)
+[Laajennettu Eukleideen algoritmi](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
 [Wikipedia: Miller-Rabin](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 [Aiheesta montako iteraatiota kannattaa Miller-Rabinissa tehdä](https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite)
 

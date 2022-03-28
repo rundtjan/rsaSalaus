@@ -3,6 +3,14 @@ from algorithms.miller_rabin import miller_rabin
 
 class TestMillerRabin(unittest.TestCase):
 
+    def test_miller_rabin_identifies_small_primes(self):
+        result = miller_rabin(1,40)
+        self.assertTrue(result)
+        result = miller_rabin(2,40)
+        self.assertTrue(result)
+        result = miller_rabin(3,40)
+        self.assertTrue(result)
+    
     def test_miller_rabin_identifies_known_primes(self):
         result = miller_rabin(4027,40)
         self.assertTrue(result)

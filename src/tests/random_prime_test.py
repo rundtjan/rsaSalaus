@@ -1,4 +1,3 @@
-from random import random
 import unittest
 from algorithms.random_prime import get_prime_numbers, random_prime, min_max
 

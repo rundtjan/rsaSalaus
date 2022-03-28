@@ -23,8 +23,7 @@ def lcm(a,b):
     Palautusarvo:
         Kokonaisluku, joka on kahden luvun pienin yhteinen jaettava.
     """
-
-    return a*b/gcd(a,b)
+    return a*b//gcd(a,b)
 
 def lambda_n(p,q):
     """Funktio, joka löytää λ(n) - luku, jota tarvitaan rsa-algoritmissa.

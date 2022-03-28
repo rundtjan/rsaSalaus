@@ -1,4 +1,3 @@
-from random import random
 import unittest
 from algorithms.lambda_n import gcd, lcm, lambda_n
 
@@ -9,6 +8,7 @@ class TestLambdaNFunctions(unittest.TestCase):
         q = 2018
         l_n = lambda_n(p,q)
         test_against = lcm(p-1,q-1)
+        print(test_against)
         self.assertEqual(l_n, test_against)
 
     def test_that_lcm_returns_integer_correct_least_common_multiple(self):
