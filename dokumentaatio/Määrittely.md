@@ -32,6 +32,7 @@ Ainakin:
 [OAEP](https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding)
 [Myös OAEP](https://datatracker.ietf.org/doc/html/rfc2437#section-9.1.1.2)
 [Vielä OAEP](https://www.inf.pucrs.br/~calazans/graduate/TPVLSI_I/RSA-oaep_spec.pdf)
+[OAEP:n Mask Function](https://en.wikipedia.org/wiki/Mask_generation_function)
 
 
 ## Opinto-ohjelma
