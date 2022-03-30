@@ -1,14 +1,5 @@
 from hashlib import sha512
 
-def to_len(h, len):
-    return h #joka jollain tavalla säädetään pituuteen len
-
-def hash(str, len):
-    h = sha512(str).digest() 
-    to_len(h, len)
-    return h
-
-
 def byte_to_bin_string(bytes):
     '''Funktio, joka muuntaa byte-jonon binäärimerkkijonoksi
     
@@ -58,7 +49,6 @@ def mgf1(db, length):
     while len(output) < length // 8:
         c_b = str(counter).encode('utf-8')
         output += sha512(oct_str+c_b).digest()
-        print(counter, len(output))
         counter += 1
     return byte_to_bin_string(output[:length//8])
 
@@ -73,7 +63,13 @@ def xor(a,b):
         c - merkkijono, sisältönä xor-binäärinen tulos a ja b:sta.
 
     '''
-    c = a+b #xor tapahtuisi jollain tavalla täällä
+    c = ''
+    assert len(a) == len(b), f'a and b should be of same length'
+    for i in range(0,len(a)):
+        if a[i] == b[i]:
+            c += '0'
+        else:
+            c += '1'
     return c
 
 def oaep(m0, rand, db_len):
@@ -88,10 +84,14 @@ def oaep(m0, rand, db_len):
         oaep_m - viestiosuuden ja satunnaisen viestiosuuden yhdistelmä, merkkijono, binääristä dataa.
 
     '''
-    m1 = m0 + [0] * (db_len - len(m0))
-    m1 = xor(m1, mgf1(rand, db_len))
-    rand = xor(rand, mgf1(m1, len(rand)))
+    m1 = m0 + '0' * (db_len - len(m0))
+    db_mask = mgf1(rand, db_len)
+    m1 = xor(m1, db_mask)
+    rand_mask = mgf1(m1, len(rand))
+    rand = xor(rand, rand_mask)
     return m1 + rand
+
+#print(oaep('0001010000010100', '01100100', 16))
 
 def rsa(padded, e, n):
     '''Funktio, joka tekee itse rsa-laskelman.
