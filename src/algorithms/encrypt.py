@@ -152,7 +152,7 @@ def rsa_encrypt(message, n, e):
     '''
     n_len = bit_length_of(n)
     seed = create_random_seed(n_len // 4)
-    assert len(seed) % 8 == 0, f'rand should be divisible by 8'
+    assert len(seed) % 8 == 0, f'seed should be divisible by 8'
     db_len = n_len -8 - len(seed)
     message = string_to_bin(message)
     padded = oaep(message, seed, db_len)
