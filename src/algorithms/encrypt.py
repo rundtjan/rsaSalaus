@@ -1,4 +1,6 @@
 from hashlib import sha512
+from math import log2, floor
+import random
 
 def byte_to_bin_string(bytes):
     '''Funktio, joka muuntaa byte-jonon binäärimerkkijonoksi
@@ -72,11 +74,11 @@ def xor(a,b):
             c += '1'
     return c
 
-def oaep(m0, rand, db_len):
+def oaep(message, seed, db_len):
     '''Funktio, joka hoitaa oaep-padding:
 
     Parametrit:
-        m0 - alkuperäinen viesti merkkijonona, binääristä dataa.
+        message - alkuperäinen viesti merkkijonona, binääristä dataa.
         rand - satunnainen viestiosuus, "padding", merkkijono, binääristä dataa.
         db_len - algoritmin datablokin pituus
 
@@ -84,12 +86,12 @@ def oaep(m0, rand, db_len):
         oaep_m - viestiosuuden ja satunnaisen viestiosuuden yhdistelmä, merkkijono, binääristä dataa.
 
     '''
-    m1 = m0 + '0' * (db_len - len(m0))
-    db_mask = mgf1(rand, db_len)
-    m1 = xor(m1, db_mask)
-    rand_mask = mgf1(m1, len(rand))
-    rand = xor(rand, rand_mask)
-    return m1 + rand
+    db = message + '0' * (db_len - len(message))
+    db_mask = mgf1(seed, db_len)
+    db = xor(db, db_mask)
+    seed_mask = mgf1(db, len(seed))
+    seed = xor(seed, seed_mask)
+    return db + seed
 
 #print(oaep('0001010000010100', '01100100', 16))
 
@@ -104,19 +106,56 @@ def rsa(padded, e, n):
     '''
     return pow(padded, e, n)
 
-def rsa_encrypt(m0, n, e, rand, db_len):
+def bit_length_of(i):
+    '''Funktio, joka tarkistaa kokonaisluvun bittipituus.
+    
+    Parametrit:
+        i - kokonaisluku.
+
+    Palautusarvo:
+        kokonaisluku, i:n bittipituus.
+    '''
+    return floor(log2(i))+1
+
+def create_random_seed(length):
+    '''Funktio, joka tuottaa satunnaisen viestin osuus, oaep:n tarvitsema seed.
+    
+    Parametrit:
+        length - kokonaisluku, seedin pituus.
+    
+    Palautusarvo:
+        seed - merkkijono, binääristä dataa.
+    '''
+    seed = ''
+    for _ in range(length):
+        seed += str(random.randint(0,1))
+    return seed
+
+def bin_string_to_int(b_s):
+    pass
+
+
+def rsa_encrypt(message, n, e):
     '''Funktio, joka tuottaa rsa-salauksen oaep-padding-tekniikan avulla.
     
     Parametrit:
-        m0 - alkuperäinen viesti merkkijonona.
+        message - alkuperäinen viestin sopivan kokoinen osa (kts. laskelma alla) merkkijonona, binääristä dataa.
         n - julkisen avaimen n-osuus
         e - julkisen avaimen e-osuus
-        rand - viestin satunnainen osuus samassa esitysmuodossa kuin m0.
-        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(m0))
+        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(message)) 
+            -- esim db_len, jos salattava viesti oltava < len(bits(n)), jolloin db_len = 1024 - 1 kpl. byte (8) - len(seed) (bytes, eli x*8)
+            -- esim jos len(seed) = 24 * 8 = 192, db_len = 1024-8-192 = 824
+            -- len(message) < db_len
 
     Palautusarvo:
         Salattu viesti, merkkijonona, binääristä dataa.
     '''
-    padded = oaep(m0, rand, db_len)
-    rsa_m = rsa(padded, e, n)
-    return rsa_m
+    n_len = bit_length_of(n)
+    seed = create_random_seed(n_len // 4)
+    assert len(seed) % 8 == 0, f'rand should be divisible by 8'
+    db_len = n_len -8 - len(seed)
+    message = string_to_bin(message)
+    padded = oaep(message, seed, db_len)
+    print(padded)
+    #rsa_m = rsa(padded, e, n)
+    #return rsa_m
