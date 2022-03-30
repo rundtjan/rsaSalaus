@@ -22,22 +22,21 @@ def xor(a,b):
     c = a+b #xor tapahtuisi jollain tavalla täällä
     return c
 
-def oaep(m0, rand, m1_len, rand_len):
+def oaep(m0, rand, db_len):
     '''Funktio, joka hoitaa oaep-padding:
 
     Parametrit:
         m0 - alkuperäinen viesti octet stringinä.
         rand - satunnainen viestiosuus, "padding"
-        m1_len - algoritmin viestiosuuden pituus
-        rand_len - satunnaisen viestiosuuden pituus
+        db_len - algoritmin datablokin pituus
 
     Palautusarvo:
         oaep_m - viestiosuuden ja satunnaisen viestiosuuden yhdistelmä, octet stringinä.
 
     '''
-    m1 = m0 + [0] * (m1_len - len(m0))
-    m1 = xor(m1, hash(rand, m1_len))
-    rand = xor(rand, hash(m1, rand_len))
+    m1 = m0 + [0] * (db_len - len(m0))
+    m1 = xor(m1, hash(rand, db_len))
+    rand = xor(rand, hash(m1, len(rand)))
     return concat(m1, rand) #miten konkatenoida nämä?
 
 def rsa(padded, e, n):
@@ -51,7 +50,7 @@ def rsa(padded, e, n):
     '''
     return pow(padded, e, n)
 
-def rsa_encrypt(m0, n, e, rand, m1_len, rand_len):
+def rsa_encrypt(m0, n, e, rand, db_len):
     '''Funktio, joka tuottaa rsa-salauksen oaep-padding-tekniikan avulla.
     
     Parametrit:
@@ -59,19 +58,16 @@ def rsa_encrypt(m0, n, e, rand, m1_len, rand_len):
         n - julkisen avaimen n-osuus
         e - julkisen avaimen e-osuus
         rand - viestin satunnainen osuus samassa esitysmuodossa kuin m0.
-        m1_len - salattavan viestin ei-satunnainen osuus, m0 + '0'*(m1_len - len(m0))
-        rand_len - satunnaisen osuuden pituus. (m1_len + rand_len pitää olla sopiva verrattuna n:ään)
+        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(m0))
 
     Palautusarvo:
         Salattu viesti, jossain esitysmuodossa (octet string?).
     '''
-    padded = oaep(m0, rand, m1_len, rand_len)
+    padded = oaep(m0, rand, db_len)
     rsa_m = rsa(padded, e, n)
     return rsa_m
 
 def first_encrypt(m, n, e):
-    #m = int.from_bytes(m.encode('utf-8'), byteorder='big')
-    #print(m)
     m = m.encode('utf8')
     print(m)
     print(list(m))
