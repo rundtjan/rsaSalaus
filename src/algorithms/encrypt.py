@@ -132,7 +132,7 @@ def create_random_seed(length):
     return seed
 
 def bin_string_to_int(b_s):
-    pass
+    return int(b_s, 2)
 
 
 def rsa_encrypt(message, n, e):
@@ -156,6 +156,7 @@ def rsa_encrypt(message, n, e):
     db_len = n_len -8 - len(seed)
     message = string_to_bin(message)
     padded = oaep(message, seed, db_len)
-    print(padded)
-    #rsa_m = rsa(padded, e, n)
-    #return rsa_m
+    pad_m_int = bin_string_to_int(padded)
+    rsa_m = rsa(pad_m_int, e, n)
+    rsa_m = bin(rsa_m)[2:]
+    return rsa_m
