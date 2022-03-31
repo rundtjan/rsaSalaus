@@ -1,29 +1,28 @@
 from hashlib import sha512
-from math import log2, floor
 import random
 
-def byte_to_bin_string(bytes):
+def byte_to_bin_string(bytestring):
     '''Funktio, joka muuntaa byte-jonon binäärimerkkijonoksi
-    
+
     Parametrit:
         bytes - b''
-    
+
     Palautusarvo - merkkijono, jossa bytes binäärisessä esitysmuodossa.
 
     '''
     b_m = ''
-    for byte in list(bytes):
+    for byte in list(bytestring):
         b = format(byte, 'b')
         ex = 8 - len(b)
         if ex > 0:
             z = '0'*ex
             b = z + b
         b_m += b
-    return b_m    
+    return b_m
 
 def string_to_bin(m):
     '''Funktio, joka muuntaa merkkijonon binääriseksi.
-    
+
     Parametrit:
         m - merkkijono.
 
@@ -36,7 +35,7 @@ def string_to_bin(m):
 
 def mgf1(db, length):
     '''Funktio, suoraan OAEP:n määrittelystä.
-    
+
     Parametrit:
         db - datablokki binäärisessä esitysmuodossa, merkkijono
         length - palautusarvon toivottu pituus
@@ -56,7 +55,7 @@ def mgf1(db, length):
 
 def xor(a,b):
     '''Funktio, joka tuottaa xor-tuloksen kahdesta parametrista.
-    
+
     Parametrit:
         a - merkkijono, sisältönä binäärinen luku.
         b - merkkijono, sisältönä binäärinen luku.
@@ -66,7 +65,7 @@ def xor(a,b):
 
     '''
     c = ''
-    assert len(a) == len(b), f'a and b should be of same length'
+    assert len(a) == len(b), "a and b should be of same length"
     for i in range(0,len(a)):
         if a[i] == b[i]:
             c += '0'
@@ -95,18 +94,18 @@ def oaep(message, seed, db_len):
 
 def rsa(padded, e, n):
     '''Funktio, joka tekee itse rsa-laskelman.
-    
+
     Parametrit:
         padded - salattava viesti oaep-käsittelyn jälkeen.
         e - julkisen avaimen e-osuus
         n - julkisen avaimen n-osuus
-    
+
     '''
     return pow(padded, e, n)
 
 def bit_length_of(i):
     '''Funktio, joka tarkistaa kokonaisluvun bittipituus.
-    
+
     Parametrit:
         i - kokonaisluku.
 
@@ -117,10 +116,10 @@ def bit_length_of(i):
 
 def create_random_seed(length):
     '''Funktio, joka tuottaa satunnaisen viestin osuus, oaep:n tarvitsema seed.
-    
+
     Parametrit:
         length - kokonaisluku, seedin pituus.
-    
+
     Palautusarvo:
         seed - merkkijono, binääristä dataa.
     '''
@@ -135,13 +134,14 @@ def bin_string_to_int(b_s):
 
 def rsa_encrypt(message, n, e):
     '''Funktio, joka tuottaa rsa-salauksen oaep-padding-tekniikan avulla.
-    
+
     Parametrit:
-        message - alkuperäinen viestin sopivan kokoinen osa (kts. laskelma alla) merkkijonona, binääristä dataa.
+        message - alkuperäinen viestin sopivan kokoinen osa merkkijonona, binääristä dataa.
         n - julkisen avaimen n-osuus
         e - julkisen avaimen e-osuus
-        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(message)) 
-            -- esim db_len, jos salattava viesti oltava < len(bits(n)), jolloin db_len = 1024 - 1 kpl. byte (8) - len(seed) (bytes, eli x*8)
+        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(message))
+            -- esim db_len, jos salattava viesti oltava < len(bits(n)),
+            -- jolloin db_len = 1024 - 1 kpl. byte (8) - len(seed) (bytes, eli x*8)
             -- esim jos len(seed) = 24 * 8 = 192, db_len = 1024-8-192 = 824
             -- len(message) < db_len
 
@@ -150,10 +150,10 @@ def rsa_encrypt(message, n, e):
     '''
     n_len = bit_length_of(n)
     seed = create_random_seed(n_len // 4)
-    assert len(seed) % 8 == 0, f'seed should be divisible by 8'
+    assert len(seed) % 8 == 0, "seed should be divisible by 8"
     db_len = n_len -8 - len(seed)
     message = string_to_bin(message)
-    assert len(message) < (n_len - len(seed)), f'the message is too long'
+    assert len(message) < (n_len - len(seed)), "the message is too long"
     padded = oaep(message, seed, db_len)
     pad_m_int = bin_string_to_int(padded)
     rsa_m = rsa(pad_m_int, e, n)

@@ -1,4 +1,4 @@
 [MASTER]
 disable=C0114, # missing-module-docstring
 [FORMAT]
-good-names=a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z
+good-names=a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z,db,ex

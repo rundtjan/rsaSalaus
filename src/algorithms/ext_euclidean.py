@@ -1,10 +1,10 @@
 def ext_euclidean(lambda_n, e):
     """Funktio, joka tuottaa modulaariaritmetiikan käänteisluvun.
-    
+
     Parametrit:
         lambda_n - kokonaisluku.
         e - kokonaisluku
-        
+ 
     Palautusarvo:
         old_t - positiivinen kokonaisuluku, joka vastaa y:tä, yhtälössä:
         x * lambda_n + y * e = gcd(lambda_n, e) = 1
@@ -26,7 +26,7 @@ def ext_euclidean(lambda_n, e):
 
     if old_t > lambda_n:
         old_t -= lambda_n
-    
+
     print(old_t)
 
     return old_t
