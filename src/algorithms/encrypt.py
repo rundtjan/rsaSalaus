@@ -79,7 +79,7 @@ def oaep(message, seed, db_len):
 
     Parametrit:
         message - alkuperäinen viesti merkkijonona, binääristä dataa.
-        rand - satunnainen viestiosuus, "padding", merkkijono, binääristä dataa.
+        seed - satunnainen viestiosuus, "padding", merkkijono, binääristä dataa.
         db_len - algoritmin datablokin pituus
 
     Palautusarvo:
@@ -153,9 +153,10 @@ def rsa_encrypt(message, n, e):
     '''
     n_len = bit_length_of(n)
     seed = create_random_seed(n_len // 4)
-    assert len(seed) % 8 == 0, f'rand should be divisible by 8'
+    assert len(seed) % 8 == 0, f'seed should be divisible by 8'
     db_len = n_len -8 - len(seed)
     message = string_to_bin(message)
+    assert len(message) < (n_len - len(seed)), f'the message is too long'
     padded = oaep(message, seed, db_len)
     pad_m_int = bin_string_to_int(padded)
     rsa_m = rsa(pad_m_int, e, n)
