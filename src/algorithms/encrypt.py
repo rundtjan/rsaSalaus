@@ -87,6 +87,7 @@ def oaep(message, seed, db_len):
 
     '''
     db = message + '0' * (db_len - len(message))
+    len(db)
     db_mask = mgf1(seed, db_len)
     db = xor(db, db_mask)
     seed_mask = mgf1(db, len(seed))
