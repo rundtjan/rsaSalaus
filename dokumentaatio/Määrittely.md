@@ -22,16 +22,16 @@ Algoritmeista ainakin Miller-Rabin:in aikavaatimus wikipedian mukaan O(k log^3 n
 ## Lähteet
 
 Ainakin:  
-[Wikipedia: RSA, fi](https://fi.wikipedia.org/wiki/RSA)
-[Wikipedia: RSA, eng](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
-[Suurimman yhteisen tekijän löytäminen](https://brilliant.org/wiki/extended-euclidean-algorithm/)
-[Eukleideen algoritmista](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)
-[Laajennettu Eukleideen algoritmi](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
-[Wikipedia: Miller-Rabin](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
-[Aiheesta montako iteraatiota kannattaa Miller-Rabinissa tehdä](https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite)
-[OAEP](https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding)
-[Myös OAEP](https://datatracker.ietf.org/doc/html/rfc2437#section-9.1.1.2)
-[Vielä OAEP](https://www.inf.pucrs.br/~calazans/graduate/TPVLSI_I/RSA-oaep_spec.pdf)
+[Wikipedia: RSA, fi](https://fi.wikipedia.org/wiki/RSA)  
+[Wikipedia: RSA, eng](https://en.wikipedia.org/wiki/RSA_(cryptosystem))  
+[Suurimman yhteisen tekijän löytäminen](https://brilliant.org/wiki/extended-euclidean-algorithm/)  
+[Eukleideen algoritmista](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)  
+[Laajennettu Eukleideen algoritmi](https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)  
+[Wikipedia: Miller-Rabin](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)  
+[Aiheesta montako iteraatiota kannattaa Miller-Rabinissa tehdä](https://stackoverflow.com/questions/6325576/how-many-iterations-of-rabin-miller-should-i-use-for-cryptographic-safe-primes#:~:text=Each%20iteration%20of%20Rabin%2DMiller,that%20the%20number%20is%20composite)  
+[OAEP](https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding)  
+[Myös OAEP](https://datatracker.ietf.org/doc/html/rfc2437#section-9.1.1.2)  
+[Vielä OAEP](https://www.inf.pucrs.br/~calazans/graduate/TPVLSI_I/RSA-oaep_spec.pdf)  
 [OAEP:n Mask Function](https://en.wikipedia.org/wiki/Mask_generation_function)
 
 
