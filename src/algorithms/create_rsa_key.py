@@ -18,8 +18,4 @@ def create_rsa_key(length):
     l_n = lambda_n(p,q)
     e = find_e(l_n)
     d = ext_euclidean(l_n, e)
-    print('n', n)
-    print('l_n', l_n)
-    print('e', e)
-    print('d', d)
     return (n,e,d)

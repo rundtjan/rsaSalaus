@@ -87,14 +87,11 @@ def oaep(message, seed, db_len):
 
     '''
     db = message + '0' * (db_len - len(message))
-    len(db)
     db_mask = mgf1(seed, db_len)
     db = xor(db, db_mask)
     seed_mask = mgf1(db, len(seed))
     seed = xor(seed, seed_mask)
     return db + seed
-
-#print(oaep('0001010000010100', '01100100', 16))
 
 def rsa(padded, e, n):
     '''Funktio, joka tekee itse rsa-laskelman.
@@ -116,7 +113,7 @@ def bit_length_of(i):
     Palautusarvo:
         kokonaisluku, i:n bittipituus.
     '''
-    return floor(log2(i))+1
+    return len(bin(i)[2:])
 
 def create_random_seed(length):
     '''Funktio, joka tuottaa satunnaisen viestin osuus, oaep:n tarvitsema seed.

@@ -31,8 +31,8 @@ def min_max(length,first_number):
         Monikko, jossa kokonaisluvut (minimi-, maksimiraja).
     """
 
-    min_n = pow(2, length)
-    max_n = pow(2, length+1)-1
+    min_n = pow(2, length-1)
+    max_n = pow(2, length-1+1)-1
     if first_number:
         min_n //= first_number
         min_n += pow(10, 10)
