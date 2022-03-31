@@ -39,7 +39,7 @@ def mgf1(db, length):
     
     Parametrit:
         db - datablokki binäärisessä esitysmuodossa, merkkijono
-        length - palautusarvon toivottu pituus - pitää tarkistaa
+        length - palautusarvon toivottu pituus
 
     Palautusarvo:
         Merkkijono, hash-funktion tulos, binäärisessä esitysmuodossa.
