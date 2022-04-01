@@ -5,6 +5,6 @@ Tuli tutuksi käsite "padding". En tiedä mikä on oikea suomenkielinen termi. P
 
 RSA-salauksen kanssa käytetään OEAP-nimistä tekniikkaa, joka on todettu hyvin luotettavaksi. Minulla meni suhteettoman paljon aikaa vain eri OEAP-kuvausten tuijottamiseen, ennen kuin alkoi jollain tavalla hahmottua, miten algoritmi toimii, ja mistä voisin lähteä liikkeelle.
 
-Sain tällä viikolla enkryptaus-vaiheen valmiiksi. Pikkasen jännittää nähdä, onko algoritmi toteutettu oikein, että sen pystyy myös dekryptaamaan. Pientä jännitystä sillä tavalla, ensi viikolle.
+Sain tällä viikolla enkryptaus-vaiheen valmiiksi, ja dekryptaus-vaiheen melkein valmiiksi, binääriseen muotoon asti, nyt pitää vain konvertoida taas utf-8-merkeiksi.
 
-Tunteja käytetty: n. 12
+Tunteja käytetty: n. 15
