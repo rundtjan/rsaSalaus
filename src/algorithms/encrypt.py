@@ -86,6 +86,7 @@ def oaep(message, seed, db_len):
 
     '''
     db = message + '0' * (db_len - len(message))
+    print('db ', db)
     db_mask = mgf1(seed, db_len)
     db = xor(db, db_mask)
     seed_mask = mgf1(db, len(seed))
@@ -159,3 +160,37 @@ def rsa_encrypt(message, n, e):
     rsa_m = rsa(pad_m_int, e, n)
     rsa_m = bin(rsa_m)[2:]
     return rsa_m
+
+def rsa_reverse(message, n, d):
+    return pow(message, d, n)
+
+def remove_trailing_zeros(db):
+    pass
+
+def bin_to_string(message):
+    pass
+
+def reverse_oaep(db, seed):
+    seed_mask = mgf1(db, len(seed))
+    seed = xor(seed, seed_mask)
+    db_mask = mgf1(seed, len(db))
+    db = xor(db, db_mask)
+    return db
+
+def rsa_decrypt(message, n, d):
+    message = bin_string_to_int(message)
+    message = rsa_reverse(message, n , d)
+    message = bin(message)[2:]
+    correct_len = bit_length_of(n) - 8
+    if correct_len - len(message) > 0:
+        message = ('0'*(correct_len-len(message))) + message
+    n_len = bit_length_of(n)
+    seed_len = n_len // 4
+    seed = message[n_len-8-seed_len:]
+    db = message[:n_len-8-seed_len]
+    db = reverse_oaep(db, seed)
+    print('db ', db)
+    message = remove_trailing_zeros(db)
+    message = bin_to_string(message)
+    return message
+
