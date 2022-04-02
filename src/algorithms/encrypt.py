@@ -86,7 +86,6 @@ def oaep(message, seed, db_len):
 
     '''
     db = message + '0' * (db_len - len(message))
-    print('db ', db)
     db_mask = mgf1(seed, db_len)
     db = xor(db, db_mask)
     seed_mask = mgf1(db, len(seed))
@@ -164,33 +163,46 @@ def rsa_encrypt(message, n, e):
 def rsa_reverse(message, n, d):
     return pow(message, d, n)
 
-def remove_trailing_zeros(db):
-    pass
-
-def bin_to_string(message):
-    pass
-
 def reverse_oaep(db, seed):
+    '''Funktio, joka käyttää oaep-padding-toimintoa toisinpäin.
+    
+    Parametrit:
+        db - merkkijono, oaep-käsitelty viestiosuus, binääristä dataa
+        seed - merkkijono, oaep-käsitelty satunnainen osuus, binääristä dataa
+
+    Palautusarvo:
+        db - merkkijono, viestiosuus ilman oaep-käsittelyä, binääristä dataa
+    '''
     seed_mask = mgf1(db, len(seed))
     seed = xor(seed, seed_mask)
     db_mask = mgf1(seed, len(db))
     db = xor(db, db_mask)
     return db
 
-def rsa_decrypt(message, n, d):
-    message = bin_string_to_int(message)
-    message = rsa_reverse(message, n , d)
-    message = bin(message)[2:]
+def correct_length(message, n):
     correct_len = bit_length_of(n) - 8
     if correct_len - len(message) > 0:
         message = ('0'*(correct_len-len(message))) + message
+    return message
+
+def split_into_db_and_seed(message, n):
     n_len = bit_length_of(n)
     seed_len = n_len // 4
     seed = message[n_len-8-seed_len:]
     db = message[:n_len-8-seed_len]
-    db = reverse_oaep(db, seed)
-    print('db ', db)
-    message = remove_trailing_zeros(db)
-    message = bin_to_string(message)
+    return (db, seed)
+
+def from_bin_to_text_string(db):
+    byte_db = bytes(int(db[i: i+8], 2) for i in range(0, len(db), 8))
+    message = byte_db.decode('utf-8')
     return message
 
+def rsa_decrypt(message, n, d):
+    message = bin_string_to_int(message)
+    message = rsa_reverse(message, n , d)
+    message = bin(message)[2:]
+    message = correct_length(message, n)
+    (db, seed) = split_into_db_and_seed(message, n)
+    db = reverse_oaep(db, seed)
+    message = from_bin_to_text_string(db)
+    return message
