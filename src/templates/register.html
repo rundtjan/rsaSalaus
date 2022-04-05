@@ -1,5 +1,5 @@
-<h3>Please login to the supersecret service</h3>
-<form action="/login" method="post">
+<h3>Please register for using the supersecret service</h3>
+<form action="/register" method="post">
   {% with messages = get_flashed_messages() %}
       {% if messages %}
           <ul>
@@ -11,23 +11,23 @@
   {% endwith %}
   
   <div>
-      <label for="username">Username</label>
+      <label for="username">Enter a username</label>
       <input type="text" name="username" id="username">
   </div>
 
   <div>
-      <label for="password">Password</label>
+      <label for="password">Enter a password</label>
       <input type="password" name="password" id="password">
   </div>
   <p>
   <button>
-      Login
+      Register
   </button>
-
+  
   <!-- placeholder for registerbutton -->
   <p>
   <div>
-      <a href="/register">Register here</a>
+      <a href="/login">Login if you already are a user</a>
   </div>
 
 </form>

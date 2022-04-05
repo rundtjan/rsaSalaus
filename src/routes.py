@@ -4,7 +4,7 @@ from flask import (
 #    request,
 #    flash
 )
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user, logout_user
 from algorithms.create_rsa_key import create_rsa_key
 from algorithms.encrypt import rsa_encrypt, rsa_decrypt
 
@@ -25,8 +25,27 @@ def base():
 def login():
     return render_template('login.html')
 
+@app.route('/login', methods=['POST'])
+def login_form():
+    username = request.form.get('username')
+    password = request.form.get('password') # pylint: disable=unused-variable
+    # check credentials here
+    # user = checking
+    # if not user:
+    #     handle appropriately
+    # login_user(user)
+    # return redirect('/')
+
 @app.route('/test')
 def test():
     if current_user.is_authenticated:
-        return redirect("/lukuvinkkiview")
+        return redirect("/")
     return redirect("/login")
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/crazy')
+def crazy():
+    return 'totally crazy'
