@@ -232,7 +232,7 @@ def from_bin_to_text_string(db):
     '''
     byte_db = bytes(int(db[i: i+8], 2) for i in range(0, len(db), 8))
     message = byte_db.decode('utf-8')
-    return message
+    return message.rstrip('\x00')
 
 def rsa_decrypt(message, n, d):
     '''Funktio, joka poistaa salauksen viestistä.
