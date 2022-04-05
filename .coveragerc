@@ -1,4 +1,4 @@
 [run]
 branch = True
 source = src
-omit = src/tests/**,src/index.py,src/app.py,src/routes.py
+omit = src/tests/**,src/index.py,src/app.py,src/routes.py,src/config.py,src/db_init.py,src/fixforheroku.py

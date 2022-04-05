@@ -1,5 +1,7 @@
 import unittest
-from algorithms.encrypt import rsa_encrypt, byte_to_bin_string, string_to_bin, mgf1, xor, oaep, bit_length_of, create_random_seed, bin_string_to_int
+from algorithms.encrypt import rsa_encrypt, rsa_decrypt, byte_to_bin_string, string_to_bin, mgf1, xor, oaep, bit_length_of, create_random_seed, bin_string_to_int
+from algorithms.create_rsa_key import create_rsa_key
+
 
 class TestEncrypt(unittest.TestCase):
     
@@ -93,4 +95,16 @@ class TestEncrypt(unittest.TestCase):
         self.assertRaises(AssertionError, rsa_encrypt, 'hello what a pleasant day to be alive, would you not say, dear Watson', pow(2,127)+1, 3)
 
     def test_rsa_encrypt_returns_a_string_consisting_of_binary_data(self):
-      pass
+        (n,e,d) = create_rsa_key(1024)
+        result = rsa_encrypt('Hello world, is there anybody out there?', n, e)
+        zeros = result.count('0')
+        ones = result.count('1')
+        length = len(result)
+        self.assertEqual(zeros+ones, length)
+
+    def test_rsa_decrypts_the_string_returned_by_rsa_encrypt(self):
+        (n,e,d) = create_rsa_key(1024)
+        raw = 'Hello world, is there anybody out there?'
+        c = rsa_encrypt(raw, n, e)
+        decrypted = rsa_decrypt(c, n, d)
+        self.assertEqual(raw, decrypted)
