@@ -91,3 +91,6 @@ class TestEncrypt(unittest.TestCase):
 
     def test_rsa_encrypt_fails_if_message_is_too_long(self):
         self.assertRaises(AssertionError, rsa_encrypt, 'hello what a pleasant day to be alive, would you not say, dear Watson', pow(2,127)+1, 3)
+
+    def test_rsa_encrypt_returns_a_string_consisting_of_binary_data(self):
+      pass

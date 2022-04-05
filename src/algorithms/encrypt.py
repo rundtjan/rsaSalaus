@@ -82,7 +82,8 @@ def oaep(message, seed, db_len):
         db_len - algoritmin datablokin pituus
 
     Palautusarvo:
-        oaep_m - viestiosuuden ja satunnaisen viestiosuuden yhdistelmä, merkkijono, binääristä dataa.
+        oaep_m - viestiosuuden ja satunnaisen viestiosuuden yhdistelmä, merkkijono,
+        binääristä dataa.
 
     '''
     db = message + '0' * (db_len - len(message))
@@ -129,6 +130,15 @@ def create_random_seed(length):
     return seed
 
 def bin_string_to_int(b_s):
+    '''Funktio, joka muuntaa binäärinen merkkijono kokonaisluvuksi.
+    
+    Parametrit:
+        b_s - merkkijono, binääristä dataa.
+
+    Palauttaa:
+        kokonaisluvun.
+    
+    '''
     return int(b_s, 2)
 
 
@@ -165,7 +175,7 @@ def rsa_reverse(message, n, d):
 
 def reverse_oaep(db, seed):
     '''Funktio, joka käyttää oaep-padding-toimintoa toisinpäin.
-    
+
     Parametrit:
         db - merkkijono, oaep-käsitelty viestiosuus, binääristä dataa
         seed - merkkijono, oaep-käsitelty satunnainen osuus, binääristä dataa
@@ -180,12 +190,31 @@ def reverse_oaep(db, seed):
     return db
 
 def correct_length(message, n):
+    '''Funktio, joka lisää kryptattuun viestiin tarvittaessa etunollia.
+
+    Parametrit:
+        message - merkkijono, binääristä dataa
+        n - kokonaisluku, jonka bittipituus määrittelee viestin pituutta.
+
+    Palautusarvo:
+        message - merkkijono, oikean pituinen.
+    '''
     correct_len = bit_length_of(n) - 8
     if correct_len - len(message) > 0:
         message = ('0'*(correct_len-len(message))) + message
     return message
 
 def split_into_db_and_seed(message, n):
+    '''Funktio, joka löytää kryptatusta viestistä datablokin ja seed:in.
+
+    Parametrit:
+        message - merkkijono.
+        n - kokonaisluku.
+
+    Palautusarvo:
+        (db, seed) - tuple, datablokki ja seed.
+
+    '''
     n_len = bit_length_of(n)
     seed_len = n_len // 4
     seed = message[n_len-8-seed_len:]
@@ -193,11 +222,29 @@ def split_into_db_and_seed(message, n):
     return (db, seed)
 
 def from_bin_to_text_string(db):
+    '''Funktio, joka muuntaa merkkijonon binääristä dataa tekstimuotoon.
+
+    Parametrit:
+        db - merkkijono, binääristä dataa.
+
+    Palautusarvot:
+        message - merkkijono, tekstisisältöä.
+    '''
     byte_db = bytes(int(db[i: i+8], 2) for i in range(0, len(db), 8))
     message = byte_db.decode('utf-8')
     return message
 
 def rsa_decrypt(message, n, d):
+    '''Funktio, joka poistaa salauksen viestistä.
+
+    Parametrit:
+        message - merkkijono, binääristä dataa, kryptattu viesti.
+        n - kokonaisluku, osa julkista ja yksityistä avainta.
+        d - kokonaisluku, osa yksityistä avainta.
+
+    Palautusarvo:
+        message - merkkijono, alkuperäinen/dekryptattu viesti.
+    '''
     message = bin_string_to_int(message)
     message = rsa_reverse(message, n , d)
     message = bin(message)[2:]

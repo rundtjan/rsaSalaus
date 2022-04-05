@@ -1,9 +1,10 @@
-#from flask import (
-#    render_template,
+from flask import (
+    render_template,
+    redirect
 #    request,
-#    redirect,
 #    flash
-#)
+)
+from flask_login import login_required, current_user
 from algorithms.create_rsa_key import create_rsa_key
 from algorithms.encrypt import rsa_encrypt, rsa_decrypt
 
@@ -19,3 +20,13 @@ def base():
     html += f'<h1>Viesti ennen kryptausta:</h1><p>{message}<p><h1>Kryptattu viesti:</h1><p>{str(encrypted)[:150]}<br />{str(encrypted)[151:300]}<br />{str(encrypted)[301:450]}<br />{str(encrypted)[451:600]}<br />{str(encrypted)[651:800]}<br />{str(encrypted)[801:950]}<br />{str(encrypted)[951:]}</p></body></html>'
     html += f'<h1>Viesti dekryptattu</h1><p>{decrypted}</p>'
     return html
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/test')
+def test():
+    if current_user.is_authenticated:
+        return redirect("/lukuvinkkiview")
+    return redirect("/login")
