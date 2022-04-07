@@ -1,10 +1,10 @@
 import random as rand
 import unittest
-from algorithms.Rsa_key_generator import Rsa_key_generator
-from algorithms.Lambda_n_generator import Lambda_n_generator
+from algorithms.RsaKeyGenerator import RsaKeyGenerator
+from algorithms.LambdaNGenerator import LambdaNGenerator
 
-rsa_key_gen = Rsa_key_generator(1024)
-lambda_n_gen = Lambda_n_generator()
+rsa_key_gen = RsaKeyGenerator(1024)
+lambda_n_gen = LambdaNGenerator()
 
 class TestRsaKeyGenerator(unittest.TestCase):
     

@@ -1,4 +1,5 @@
-class Lambda_n_generator:
+class LambdaNGenerator:
+    """Luokka, jossa tarvittavat funktiot, jotka tuottavat lambda(n)-arvon."""
 
     def create(self,p,q):
         """Funktio, joka löytää λ(n) - luku, jota tarvitaan rsa-algoritmissa.
@@ -23,7 +24,8 @@ class Lambda_n_generator:
         """
         return a*b//self.gcd(a,b)
 
-    def gcd(self,a,b):
+    @classmethod
+    def gcd(cls,a,b):
         """Funktio, joka löytää kahden luvun suurin yhteinen tekijä.
 
         Parametrit:

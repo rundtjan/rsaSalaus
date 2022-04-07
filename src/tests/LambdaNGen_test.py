@@ -1,7 +1,7 @@
 import unittest
-from algorithms.Lambda_n_generator import Lambda_n_generator
+from algorithms.LambdaNGenerator import LambdaNGenerator
 
-lambda_n_gen = Lambda_n_generator()
+lambda_n_gen = LambdaNGenerator()
 
 class TestLambdaNGenerator(unittest.TestCase):
 

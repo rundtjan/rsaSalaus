@@ -1,9 +1,9 @@
 from random import Random
 import unittest
-from algorithms.Random_prime_generator import Random_prime_generator
+from algorithms.RandomPrimeGenerator import RandomPrimeGenerator
 
-random_prime_gen_100 = Random_prime_generator(100)
-random_prime_gen_1000 = Random_prime_generator(1000)
+random_prime_gen_100 = RandomPrimeGenerator(100)
+random_prime_gen_1000 = RandomPrimeGenerator(1000)
 
 class TestRandomPrimeGenerator(unittest.TestCase):
 

@@ -1,8 +1,8 @@
 import unittest
 from algorithms.encrypt import rsa_encrypt, rsa_decrypt, byte_to_bin_string, string_to_bin, mgf1, xor, oaep, bit_length_of, create_random_seed, bin_string_to_int
-from algorithms.Rsa_key_generator import Rsa_key_generator
+from algorithms.RsaKeyGenerator import RsaKeyGenerator
 
-rsa_key_gen = Rsa_key_generator(1024)
+rsa_key_gen = RsaKeyGenerator(1024)
 
 class TestEncrypt(unittest.TestCase):
     

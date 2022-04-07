@@ -1,6 +1,7 @@
 import random
 
-class Random_prime_generator:
+class RandomPrimeGenerator:
+    """Luokka, jossa tarvittavat funktiot, jotka tuottavat satunnaisia alkulukuja."""
 
     def __init__(self, length_of_product) -> None:
         self._length_of_p = length_of_product
@@ -21,7 +22,7 @@ class Random_prime_generator:
         q = self._random_prime(self._min_max(self._length_of_p,p))
         n = p * q
         return (n,p,q)
-    
+
     def _random_prime(self, min_max):
         """Funktio, joka tuottaa satunnaisen (todennäköisen) alkuluvun, tiettyjen rajojen sisällä.
 
@@ -39,7 +40,8 @@ class Random_prime_generator:
                 break
         return n
 
-    def _min_max(self, length,first_number):
+    @classmethod
+    def _min_max(cls, length,first_number):
         """Funktio, joka luo minimi- ja maksimirajan tietyn bittipitoisuuden
             ja mahd. toisen luvun perusteella.
 
@@ -60,7 +62,8 @@ class Random_prime_generator:
             max_n //= first_number
         return (min_n,max_n)
 
-    def _test_for_prime(self, n, d, r):
+    @classmethod
+    def _test_for_prime(cls, n, d, r):
         """Funktio, joka kokeilee eri arvoja 'a' vastaan, että onko luku alkuluku.
 
         Parametrit:

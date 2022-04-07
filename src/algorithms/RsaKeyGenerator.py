@@ -1,12 +1,13 @@
-from .Random_prime_generator import Random_prime_generator
-from .Lambda_n_generator import Lambda_n_generator
+from .RandomPrimeGenerator import RandomPrimeGenerator
+from .LambdaNGenerator import LambdaNGenerator
 
-class Rsa_key_generator:
+class RsaKeyGenerator:
+    """Luokka, jossa tarvittavat funktiot, jotka tuottavat rsa-avaimet."""
 
     def __init__(self, length) -> None:
         self._length = length
-        self._prime_gen = Random_prime_generator(length)
-        self._lambda_n_gen = Lambda_n_generator()
+        self._prime_gen = RandomPrimeGenerator(length)
+        self._lambda_n_gen = LambdaNGenerator()
 
     def create(self):
         """Funktio, joka tuottaa rsa-avaimen.
@@ -39,11 +40,12 @@ class Rsa_key_generator:
             e = 3
         while True:
             if self._lambda_n_gen.gcd(l_n,e) == 1:
-              break
+                break
             e += 1
         return e
 
-    def _ext_euclidean(self, lambda_n, e):
+    @classmethod
+    def _ext_euclidean(cls, lambda_n, e):
         """Funktio, joka tuottaa modulaariaritmetiikan käänteisluvun.
 
         Parametrit:
