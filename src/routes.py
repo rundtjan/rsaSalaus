@@ -7,12 +7,15 @@ from flask import (
 from flask_login import login_required, current_user
 from algorithms.create_rsa_key import create_rsa_key
 from algorithms.encrypt import rsa_encrypt, rsa_decrypt
+from algorithms.Rsa_key_generator import Rsa_key_generator
+
+rsa_key_gen = Rsa_key_generator(1024)
 
 from app import app
 
 @app.route('/')
 def base():
-    (n,e,d) = create_rsa_key(1024)
+    (n,e,d) = rsa_key_gen.create()
     message = 'This is a very, very secret message, I can ensure you.'
     encrypted = rsa_encrypt(message, n, e)
     decrypted = rsa_decrypt(encrypted, n, d)
