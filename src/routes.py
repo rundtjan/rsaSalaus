@@ -6,17 +6,19 @@ from flask import (
 #    flash
 )
 from flask_login import login_required, current_user
-from rsa_service.encrypt import rsa_encrypt, rsa_decrypt
+#from rsa_service.encrypt import rsa_encrypt, rsa_decrypt
 from rsa_service.RsaKeyGenerator import RsaKeyGenerator
+from rsa_service.RsaService import RsaService
 
 rsa_key_gen = RsaKeyGenerator(1024)
+rsa_service = RsaService()
 
 @app.route('/')
 def base():
     (n,e,d) = rsa_key_gen.create()
     message = 'This is a very, very secret message, I can ensure you.'
-    encrypted = rsa_encrypt(message, n, e)
-    decrypted = rsa_decrypt(encrypted, n, d)
+    encrypted = rsa_service.encrypt(message, n, e)
+    decrypted = rsa_service.decrypt(encrypted, n, d)
     html = f'<!DOCTYPE html><html><body><h1>Sinun julkinen RSA-avain:</h1><p>{str(n)[:150]}<br />{str(n)[151:]} --- {e}</p>'
     html += f'<h1>Sinun yksityinen avain:</h1><p>{str(d)[:150]}<br />{str(d)[151:]}</p>'
     html += f'<h1>Viesti ennen kryptausta:</h1><p>{message}<p><h1>Kryptattu viesti:</h1>'

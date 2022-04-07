@@ -141,29 +141,74 @@ def bin_string_to_int(b_s):
     '''
     return int(b_s, 2)
 
+def encrypt(message, n, e):
+    '''Funktio, joka tuottaa rsa-salatun viestin.
+    
+    Parametrit:
+        message - alkuperäinen viesti, merkkijono.
+        n - kokonaisluku, julkisen avaimen n-osuus.
+        e - kokonaisluku, julkisen avaimen e-osuus.
 
-def rsa_encrypt(message, n, e):
+    Palautusarvo:
+        Merkkijono, binääristä dataa, salattu viesti.
+    
+    '''
+    block_array = split_into_blocks(message, n)
+    encrypted = ''
+    for i in range(0, len(block_array)):
+        encrypted += f'{rsa_encrypt(block_array[i], n, e)}#'
+    return encrypted
+
+def decrypt(message, n, d):
+    block_array = message.split('#')
+    decrypted = ''
+    for i in range(0, len(block_array)-1):
+        decrypted += f'{rsa_decrypt(block_array[i], n, d)}'
+    return decrypted
+
+
+
+def split_into_blocks(message,n):
+    '''Funktio, joka jakaa viestin sopivankokoisiin osiin.
+    
+    Parametrit:
+        message - merkkijono, alkuperäinen viesti.
+        n - kokonaisluku, julkisen avaimen n-osuus.
+
+    Palautusarvo:
+        Lista - sisältää merkkijonoja binääristä dataa, 
+                viesti muunneltu sopivankokoisiin osiin.
+
+    '''
+    result = []
+    blocksize = bit_length_of(n) - 16 - bit_length_of(n) // 4 
+    assert blocksize % 8 == 0, "n should be divisible by 8"
+    message = string_to_bin(message)
+    if len(message) < blocksize:
+        return [message]
+    for i in range(0, len(message), blocksize):
+        block = message[i: i+blocksize]
+        result.append(block)
+    return result
+
+
+def rsa_encrypt_block(message, n, e):
     '''Funktio, joka tuottaa rsa-salauksen oaep-padding-tekniikan avulla.
 
     Parametrit:
         message - alkuperäinen viestin sopivan kokoinen osa merkkijonona, binääristä dataa.
         n - julkisen avaimen n-osuus
         e - julkisen avaimen e-osuus
-        db_len - salattavan datablokin lopullinen pituus, m0 + '0'*(db_len - len(message))
-            -- esim db_len, jos salattava viesti oltava < len(bits(n)),
-            -- jolloin db_len = 1024 - 1 kpl. byte (8) - len(seed) (bytes, eli x*8)
-            -- esim jos len(seed) = 24 * 8 = 192, db_len = 1024-8-192 = 824
-            -- len(message) < db_len
 
     Palautusarvo:
-        Salattu viesti, merkkijonona, binääristä dataa.
+        Merkkijonona, binääristä dataa, salatun viestin osa.
     '''
     n_len = bit_length_of(n)
     seed = create_random_seed(n_len // 4)
     assert len(seed) % 8 == 0, "seed should be divisible by 8"
     db_len = n_len -8 - len(seed)
-    message = string_to_bin(message)
-    assert len(message) < (n_len - len(seed)), "the message is too long"
+    #message = string_to_bin(message)
+    assert len(message) < (n_len - 8 - len(seed)), "the message is too long"
     padded = oaep(message, seed, db_len)
     pad_m_int = bin_string_to_int(padded)
     rsa_m = rsa(pad_m_int, e, n)
@@ -234,7 +279,7 @@ def from_bin_to_text_string(db):
     message = byte_db.decode('utf-8')
     return message.rstrip('\x00')
 
-def rsa_decrypt(message, n, d):
+def rsa_decrypt_block(message, n, d):
     '''Funktio, joka poistaa salauksen viestistä.
 
     Parametrit:
