@@ -1,4 +1,3 @@
-from app import app
 from flask import (
     render_template,
     redirect
@@ -6,7 +5,7 @@ from flask import (
 #    flash
 )
 from flask_login import login_required, current_user
-#from rsa_service.encrypt import rsa_encrypt, rsa_decrypt
+from app import app
 from rsa_service.RsaKeyGenerator import RsaKeyGenerator
 from rsa_service.RsaService import RsaService
 

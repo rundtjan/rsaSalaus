@@ -1,3 +1,6 @@
+# pylint: disable=protected-access
+# pylint: disable=missing-function-docstring
+
 from random import Random
 import unittest
 from rsa_service.RandomPrimeGenerator import RandomPrimeGenerator

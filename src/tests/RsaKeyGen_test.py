@@ -1,3 +1,6 @@
+# pylint: disable=protected-access
+# pylint: disable=missing-function-docstring
+
 import random as rand
 import unittest
 from rsa_service.RsaKeyGenerator import RsaKeyGenerator

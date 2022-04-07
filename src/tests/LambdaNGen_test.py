@@ -1,3 +1,6 @@
+# pylint: disable=protected-access
+# pylint: disable=missing-function-docstring
+
 import unittest
 from rsa_service.LambdaNGenerator import LambdaNGenerator
 

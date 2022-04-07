@@ -2,25 +2,27 @@ from hashlib import sha512
 import random
 
 class RsaService:
+    '''Luokka, jossa tarvittavat funktiot, jotka toteuttavat rsa-salauksen ja dekryptauksen.'''
 
-    def _byte_to_bin_string(self, bytestring):
-      '''Funktio, joka muuntaa byte-jonon binäärimerkkijonoksi
+    @classmethod
+    def _byte_to_bin_string(cls, bytestring):
+        '''Funktio, joka muuntaa byte-jonon binäärimerkkijonoksi
 
-      Parametrit:
-          bytes - b''
+        Parametrit:
+            bytes - b''
 
-      Palautusarvo - merkkijono, jossa bytes binäärisessä esitysmuodossa.
+        Palautusarvo - merkkijono, jossa bytes binäärisessä esitysmuodossa.
 
-      '''
-      b_m = ''
-      for byte in list(bytestring):
-          b = format(byte, 'b')
-          ex = 8 - len(b)
-          if ex > 0:
-              z = '0'*ex
-              b = z + b
-          b_m += b
-      return b_m
+        '''
+        b_m = ''
+        for byte in list(bytestring):
+            b = format(byte, 'b')
+            ex = 8 - len(b)
+            if ex > 0:
+                z = '0'*ex
+                b = z + b
+            b_m += b
+        return b_m
 
     def _string_to_bin(self, m):
         '''Funktio, joka muuntaa merkkijonon binääriseksi.
@@ -54,7 +56,8 @@ class RsaService:
             counter += 1
         return self._byte_to_bin_string(output[:length//8])
 
-    def _xor(self, a, b):
+    @classmethod
+    def _xor(cls, a, b):
         '''Funktio, joka tuottaa xor-tuloksen kahdesta parametrista.
 
         Parametrit:
@@ -92,7 +95,8 @@ class RsaService:
         seed = self._xor(seed, seed_mask)
         return db + seed
 
-    def _rsa(self, padded, e, n):
+    @classmethod
+    def _rsa(cls, padded, e, n):
         '''Funktio, joka tekee itse rsa-laskelman.
 
         Parametrit:
@@ -102,7 +106,8 @@ class RsaService:
         '''
         return pow(padded, e, n)
 
-    def _bit_length_of(self,i):
+    @classmethod
+    def _bit_length_of(cls,i):
         '''Funktio, joka tarkistaa kokonaisluvun bittipituus.
 
         Parametrit:
@@ -113,7 +118,8 @@ class RsaService:
         '''
         return len(bin(i)[2:])
 
-    def _create_random_seed(self,length):
+    @classmethod
+    def _create_random_seed(cls,length):
         '''Funktio, joka tuottaa satunnaisen viestin osuus, oaep:n tarvitsema seed.
 
         Parametrit:
@@ -127,9 +133,10 @@ class RsaService:
             seed += str(random.randint(0,1))
         return seed
 
-    def _bin_string_to_int(self,b_s):
+    @classmethod
+    def _bin_string_to_int(cls,b_s):
         '''Funktio, joka muuntaa binäärinen merkkijono kokonaisluvuksi.
-    
+
         Parametrit:
             b_s - merkkijono, binääristä dataa.
 
@@ -140,7 +147,7 @@ class RsaService:
 
     def encrypt(self, message, n, e):
         '''Funktio, joka tuottaa rsa-salatun viestin.
-    
+
         Parametrit:
             message - alkuperäinen viesti, merkkijono.
             n - kokonaisluku, julkisen avaimen n-osuus.
@@ -148,7 +155,7 @@ class RsaService:
 
         Palautusarvo:
             Merkkijono, binääristä dataa, salattu viesti.
-    
+
         '''
         block_array = self._split_into_blocks(message, n)
         encrypted = ''
@@ -157,6 +164,16 @@ class RsaService:
         return encrypted
 
     def decrypt(self, message, n, d):
+        '''Funktio, joka poistaa salauksen viestistä.
+
+        Parametrit:
+            message - salattu viesti, merkkijono, binääristä dataa.
+            n - kokonaisluku, julkisen avaimen n-osuus.
+            d - kokonaisluku, yksityisen avaimen d-osuus.
+
+        Palautusarvo:
+            merkkijono, alkuperäinen viesti ilman salausta.
+        '''
         block_array = message.split('#')
         decrypted = ''
         for i in range(0, len(block_array)-1):
@@ -165,17 +182,17 @@ class RsaService:
 
     def _split_into_blocks(self, message, n):
         '''Funktio, joka jakaa viestin sopivankokoisiin osiin.
-    
+
         Parametrit:
             message - merkkijono, alkuperäinen viesti.
             n - kokonaisluku, julkisen avaimen n-osuus.
 
         Palautusarvo:
-            Lista - sisältää merkkijonoja binääristä dataa, 
+            Lista - sisältää merkkijonoja binääristä dataa,
                     viesti muunneltu sopivankokoisiin osiin.
         '''
         result = []
-        blocksize = self._bit_length_of(n) - 16 - self._bit_length_of(n) // 4 
+        blocksize = self._bit_length_of(n) - 16 - self._bit_length_of(n) // 4
         assert blocksize % 8 == 0, "n should be divisible by 8"
         message = self._string_to_bin(message)
         if len(message) < blocksize:
@@ -207,7 +224,8 @@ class RsaService:
         rsa_m = bin(rsa_m)[2:]
         return rsa_m
 
-    def _rsa_reverse(self, message, n, d):
+    @classmethod
+    def _rsa_reverse(cls, message, n, d):
         return pow(message, d, n)
 
     def _reverse_oaep(self, db, seed):
@@ -257,7 +275,8 @@ class RsaService:
         db = message[:n_len-8-seed_len]
         return (db, seed)
 
-    def _from_bin_to_text_string(self, db):
+    @classmethod
+    def _from_bin_to_text_string(cls, db):
         '''Funktio, joka muuntaa merkkijonon binääristä dataa tekstimuotoon.
 
         Parametrit:
