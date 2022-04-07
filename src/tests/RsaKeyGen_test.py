@@ -1,7 +1,7 @@
 import random as rand
 import unittest
-from algorithms.RsaKeyGenerator import RsaKeyGenerator
-from algorithms.LambdaNGenerator import LambdaNGenerator
+from rsa_service.RsaKeyGenerator import RsaKeyGenerator
+from rsa_service.LambdaNGenerator import LambdaNGenerator
 
 rsa_key_gen = RsaKeyGenerator(1024)
 lambda_n_gen = LambdaNGenerator()

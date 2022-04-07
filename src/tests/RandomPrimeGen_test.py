@@ -1,6 +1,6 @@
 from random import Random
 import unittest
-from algorithms.RandomPrimeGenerator import RandomPrimeGenerator
+from rsa_service.RandomPrimeGenerator import RandomPrimeGenerator
 
 random_prime_gen_100 = RandomPrimeGenerator(100)
 random_prime_gen_1000 = RandomPrimeGenerator(1000)

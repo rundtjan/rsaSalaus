@@ -1,6 +1,6 @@
 import unittest
-from algorithms.encrypt import rsa_encrypt, rsa_decrypt, byte_to_bin_string, string_to_bin, mgf1, xor, oaep, bit_length_of, create_random_seed, bin_string_to_int
-from algorithms.RsaKeyGenerator import RsaKeyGenerator
+from rsa_service.encrypt import rsa_encrypt, rsa_decrypt, byte_to_bin_string, string_to_bin, mgf1, xor, oaep, bit_length_of, create_random_seed, bin_string_to_int
+from rsa_service.RsaKeyGenerator import RsaKeyGenerator
 
 rsa_key_gen = RsaKeyGenerator(1024)
 

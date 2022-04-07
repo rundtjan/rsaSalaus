@@ -6,8 +6,8 @@ from flask import (
 #    flash
 )
 from flask_login import login_required, current_user
-from algorithms.encrypt import rsa_encrypt, rsa_decrypt
-from algorithms.RsaKeyGenerator import RsaKeyGenerator
+from rsa_service.encrypt import rsa_encrypt, rsa_decrypt
+from rsa_service.RsaKeyGenerator import RsaKeyGenerator
 
 rsa_key_gen = RsaKeyGenerator(1024)
 

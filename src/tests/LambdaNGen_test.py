@@ -1,5 +1,5 @@
 import unittest
-from algorithms.LambdaNGenerator import LambdaNGenerator
+from rsa_service.LambdaNGenerator import LambdaNGenerator
 
 lambda_n_gen = LambdaNGenerator()
 
