@@ -1,0 +1,33 @@
+<h1>Encrypt your message</h1>
+
+<form action="/encrypt" method="POST">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <div>
+      <label for="message">Message</label><br />
+      <textarea name="message" id="message" rows="4" cols="50"></textarea>
+  </div>
+
+  <div>
+    <label for="publickey">Public Key</label><br />
+    <textarea name="publickey" id="publickey" rows="2" cols="50"></textarea>
+  </div>
+
+  <div class="btn-group">
+    <input type="submit" name="encrypt_button" value="Encrypt">
+  </div>
+</form>
+
+<a href="/">Return to the mainpage.</a>
+
+{% if encrypted %}
+<p style="overflow-wrap: break-word;">{{ encrypted }}</p>
+{% endif %}

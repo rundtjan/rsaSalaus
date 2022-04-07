@@ -176,6 +176,8 @@ class RsaService:
         '''
         block_array = message.split('#')
         decrypted = ''
+        if len(block_array) == 1:
+            return self._rsa_decrypt_block(block_array[0  ], n, d)
         for i in range(0, len(block_array)-1):
             decrypted += f'{self._rsa_decrypt_block(block_array[i], n, d)}'
         return decrypted
