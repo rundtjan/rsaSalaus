@@ -1,4 +1,7 @@
-<h1>Decrypt your message</h1>
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Decrypt your message</h2>
 
 <form action="/decrypt" method="POST">
   {% with messages = get_flashed_messages() %}
@@ -31,3 +34,5 @@
 {% if decrypted %}
 <p style="overflow-wrap: break-word;">{{ decrypted }}</p>
 {% endif %}
+
+{% endblock %}

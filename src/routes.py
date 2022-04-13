@@ -1,4 +1,3 @@
-import random
 from flask import (
     render_template,
     redirect,
@@ -17,11 +16,7 @@ rsa_service = RsaService()
 
 @app.route('/')
 def base():
-    file = random.randrange(100000,1000000)
-    html = f'<h1>Rsa-Service</h1><p>Please visit <a href="/genKeys">this page</a> to generate Rsa-keys.</p>'
-    html += f'<p>Encrypt a message <a href="/encrypt">here</a></p>'
-    html += f'<p>Decrypt a message <a href="/decrypt">here</a></p>'
-    return html
+    return render_template('index.html')
 
 @app.route('/genKeys')
 def gen_keys():
@@ -32,7 +27,7 @@ def gen_keys():
     html += f'<p style="overflow-wrap: break-word;">{n}#{e}</p>'
     html += '<h3>Private key</h3>'
     html += f'<p style="overflow-wrap: break-word;">{n}#{d}</p>'
-    return html
+    return render_template('keys.html', n=n, e=e, d=d)
 
 @app.route('/login')
 def login():

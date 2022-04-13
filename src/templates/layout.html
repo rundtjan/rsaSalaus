@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <title>RSA-encryptor</title>
+    <style>
+
+      body{        
+          padding-bottom: 40px;
+      }
+      .fixed-header, .fixed-footer{
+          width: 100%;     
+          padding: 10px 0;
+          color: #fff;
+      }
+      .fixed-header{
+          top: 0;
+          background-image: url('/static/header.png');
+          background-repeat: no-repeat;
+          display: block;
+          height: 100px;
+          margin-bottom: 20px;
+      }
+      .fixed-footer{
+          bottom: 0;
+      }
+  </style>
+  </head>
+  <body>
+    <div class="fixed-header">
+      <div class="container">
+      </div>
+  </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">{% block body %}{% endblock %}</div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+  </body>
+</html>
