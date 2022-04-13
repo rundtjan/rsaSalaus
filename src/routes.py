@@ -1,3 +1,4 @@
+import timeit
 from flask import (
     render_template,
     redirect,
@@ -51,5 +52,6 @@ def handle_decrypt():
         decrypted = rsa_service.decrypt(message, int(key[0]), int(key[1]))
         return render_template('decrypt.html', decrypted=decrypted)
 
-@app.route("/timecheck"):
+@app.route("/timecheck")
 def time_check():
+    pass
