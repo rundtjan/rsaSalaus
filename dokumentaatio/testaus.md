@@ -21,4 +21,13 @@ poetry run pytest src
 
 ## Suorituskyvyn testaaminen
 
-Ei ole vielä mitattu, paljonko sovelluksen eri toiminnot vievät aikaa.
+Avaimen luonnin kesto testattu. Testaus-endpoint löytyy verkkosovellukselta polusta /timecheck.  
+
+Tulokset (100 kpl avaimen luontia testattua):
+| Mitattu | Sekunnit |
+| ------ | ------- |
+| Keskiarvo | 0,448 |  
+| Mediaani | 0,384 |  
+| Keskihajonta | 0,302 |  
+| Maksimiarvo | 1,723 |  
+| Minimiarvo | 0,091 |

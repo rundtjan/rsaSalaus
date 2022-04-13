@@ -1,4 +1,5 @@
 import timeit
+from statistics import mean, median, stdev
 from flask import (
     render_template,
     redirect,
@@ -54,4 +55,11 @@ def handle_decrypt():
 
 @app.route("/timecheck")
 def time_check():
-    pass
+    times = 100
+    t = timeit.repeat(lambda: rsa_key_gen.create(), number=1, repeat=times)
+    m = round(mean(t), 3)
+    me = round(median(t),3)
+    std = round(stdev(t),3)
+    mx = round(max(t), 3)
+    mn = round(min(t), 3)
+    return f'Mean: {str(m)} seconds median: {str(me)} seconds, standard deviation: {str(std)} seconds <br/>Max: {mx} seconds, min: {mn} seconds.'
