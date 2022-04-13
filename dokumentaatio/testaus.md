@@ -24,10 +24,22 @@ poetry run pytest src
 Avaimen luonnin kesto testattu. Testaus-endpoint löytyy verkkosovellukselta polusta /timecheck.  
 
 Tulokset (100 kpl avaimen luontia testattua):
-| Mitattu | Sekunnit |
+| Mitattu | Sekuntia |
 | ------ | ------- |
 | Keskiarvo | 0,448 |  
 | Mediaani | 0,384 |  
 | Keskihajonta | 0,302 |  
 | Maksimiarvo | 1,723 |  
 | Minimiarvo | 0,091 |
+
+Viestin salauksen kesto testattu. Testaus-endpoint löytyy verkkosovellukselta polusta /timecheck_encrypt.  
+Viestinä käytetty Grandmaster Flashin riimi: "It's like a jungle sometimes, it makes me wonder how I keep from going under (ha ha ha ha ha)".
+
+Tulokset (100 kpl viestin salausta testattua):
+| Mitattu | Sekuntia |
+| ------ | ------- |
+| Keskiarvo | 0,000887 |  
+| Mediaani | 0,000782 |  
+| Keskihajonta | 0,000216 |  
+| Maksimiarvo | 0,002004 |  
+| Minimiarvo | 0,000748 |

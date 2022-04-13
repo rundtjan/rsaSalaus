@@ -63,3 +63,16 @@ def time_check():
     mx = round(max(t), 3)
     mn = round(min(t), 3)
     return f'Mean: {str(m)} seconds median: {str(me)} seconds, standard deviation: {str(std)} seconds <br/>Max: {mx} seconds, min: {mn} seconds.'
+
+@app.route("/timecheck_encrypt")
+def time_check_encrypt():
+    (n,e,d) = rsa_key_gen.create()
+    message = "It's like a jungle sometimes, it makes me wonder how I keep from going under (ha ha ha ha ha)."
+    times = 100
+    t = timeit.repeat(lambda: rsa_service.encrypt(message, n, e), number=1, repeat=times)
+    m = round(mean(t), 6)
+    me = round(median(t),6)
+    std = round(stdev(t),6)
+    mx = round(max(t), 6)
+    mn = round(min(t), 6)
+    return f'Mean: {str(m)} seconds median: {str(me)} seconds, standard deviation: {str(std)} seconds <br/>Max: {mx} seconds, min: {mn} seconds.'
