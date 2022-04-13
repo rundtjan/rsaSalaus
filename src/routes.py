@@ -21,12 +21,6 @@ def base():
 @app.route('/genKeys')
 def gen_keys():
     (n,e,d) = rsa_key_gen.create()
-    html = '<h1>Your RSA-keys</h1><p>Please copy and store in a safe place</p>'
-    html += '<p>Return to <a href="/">the mainpage</a></p>'
-    html += '<h3>Public key</h3>'
-    html += f'<p style="overflow-wrap: break-word;">{n}#{e}</p>'
-    html += '<h3>Private key</h3>'
-    html += f'<p style="overflow-wrap: break-word;">{n}#{d}</p>'
     return render_template('keys.html', n=n, e=e, d=d)
 
 @app.route('/login')
@@ -56,3 +50,6 @@ def handle_decrypt():
         key = request.form.get('privatekey').split('#')
         decrypted = rsa_service.decrypt(message, int(key[0]), int(key[1]))
         return render_template('decrypt.html', decrypted=decrypted)
+
+@app.route("/timecheck"):
+def time_check():
