@@ -177,10 +177,20 @@ class RsaService:
         block_array = message.split('#')
         decrypted = ''
         if len(block_array) == 1:
-            return self._rsa_decrypt_block(block_array[0  ], n, d)
+            try:
+                return self._rsa_decrypt_block(block_array[0], n, d)
+            except:
+                raise ValueError
         for i in range(0, len(block_array)-1):
             decrypted += f'{self._rsa_decrypt_block(block_array[i], n, d)}'
         return decrypted
+
+    @classmethod
+    def check_valid_decrypt_message(cls,message):
+        sum = message.count('0') + message.count('1') + message.count('#')
+        if sum == len(message):
+            return True
+        return False
 
     def _split_into_blocks(self, message, n):
         '''Funktio, joka jakaa viestin sopivankokoisiin osiin.

@@ -6,11 +6,14 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
-    <title>RSA-encryptor</title>
+    <title>RSAservice</title>
     <style>
 
       body{        
           padding-bottom: 40px;
+      }
+      form {
+        margin-bottom: 20px;
       }
       .fixed-header, .fixed-footer{
           width: 100%;     
@@ -28,6 +31,24 @@
       .fixed-footer{
           bottom: 0;
       }
+      .main {
+        text-align: center;
+      }
+      .broad-btn {
+        width: 100%;
+        margin-top: 10px;
+      }
+      .error {
+        color: white;
+        background-color: red;
+      }
+      textarea {
+        width: 100%;
+        max-width: 100%;
+      }
+      input[type=submit] {
+        width: 100%;
+      }
   </style>
   </head>
   <body>
@@ -37,9 +58,14 @@
   </div>
     <div class="container">
       <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">{% block body %}{% endblock %}</div>
-        <div class="col-3"></div>
+        <div class="col-1"></div>
+        <div class="col-2">
+          <a href="/genKeys" role="button" class="btn btn-secondary broad-btn" >Generate keys</a>
+          <a href="/encrypt" role="button" class="btn btn-secondary broad-btn">Encrypt message</a>
+          <a href="/decrypt" role="button" class="btn btn-secondary broad-btn">Decrypt message</a>
+        </div>
+        <div class="col-7 main">{% block body %}{% endblock %}</div>
+        <div class="col-2"></div>
       </div>
     </div>
   </body>

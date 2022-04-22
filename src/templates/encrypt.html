@@ -1,38 +1,34 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Encrypt your message</h2>
+{% if encrypted %}
+<h2>Your encrypted message</h2>
+<p style="overflow-wrap: break-word;">{{ encrypted }}</p>
+<a href="/encrypt" role="button" class="btn btn-secondary btn-lg broad-btn">Encrypt another message</a>
+{% else %}
 
 <form action="/encrypt" method="POST">
   {% with messages = get_flashed_messages() %}
     {% if messages %}
-      <ul>
       {% for message in messages %}
-        <li>{{ message }}</li>
+        <p class="error">{{ message }}</p>
       {% endfor %}
-      </ul>
     {% endif %}
   {% endwith %}
 
   <div>
-      <label for="message">Message</label><br />
-      <textarea name="message" id="message" rows="7" cols="100"></textarea>
+      <label for="message"><h3>Message to encrypt</h3></label><br />
+      <textarea name="message" id="message" rows="7"></textarea>
   </div>
 
   <div>
-    <label for="publickey">Public Key</label><br />
-    <textarea name="publickey" id="publickey" rows="4" cols="100"></textarea>
+    <label for="publickey"><h3>Public Key</h3></label><br />
+    <textarea name="publickey" id="publickey" rows="4"></textarea>
   </div>
 
-  <div class="btn-group">
-    <input type="submit" name="encrypt_button" value="Encrypt">
-  </div>
+  <input type="submit" name="encrypt_button" value="Encrypt">
+
 </form>
-
-<a href="/">Return to the mainpage.</a>
-
-{% if encrypted %}
-<p style="overflow-wrap: break-word;">{{ encrypted }}</p>
 {% endif %}
 
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h4>Please visit <a href="/genKeys">this page</a> to generate Rsa-keys.</h4>
-<h4>Encrypt a message <a href="/encrypt">here</a></h4>
-<h4>Decrypt a message <a href="/decrypt">here</a></h4>
+<a href="/genKeys" role="button" class="btn btn-secondary btn-lg broad-btn" style="width:550px">Generate RSA-keys</a>
+<a href="/encrypt" role="button" class="btn btn-secondary btn-lg broad-btn">Encrypt a message</a>
+<a href="/decrypt" role="button" class="btn btn-secondary btn-lg broad-btn">Decrypt a message</a>
 
 {% endblock %}
