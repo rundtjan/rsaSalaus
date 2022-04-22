@@ -18,8 +18,6 @@ Tilavaativuudet: tulossa.
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
 Tällä hetkellä avaimen pituus kovakoodattu, voisi olla käyttäjän valinta (tai ainakin voisi löytyä eri vaihtoehtoja).
-Tällä hetkellä ei voi "lähettää" tai tallentaa viestejä jollekin muulle käyttäjälle, tulossa mahd. kirjautuminen ja viestien "lähettäminen"/tallennus.
-Käyttöliittymän ulkonäkö on tällä hetkellä tietoisesti jätetty hyvin karuksi. Virhekäsittely verkkosovelluksessa on vielä olematon.
 
 ## Lähteet
   
