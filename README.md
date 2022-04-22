@@ -5,8 +5,7 @@
 
 ## URL
 
-Löytyy verkosta [täältä](https://rsa-project.herokuapp.com/). Ei kuitenkaan päivitetty, Herokun ongelmien takia.  
-
+Löytyy verkosta [täältä](https://rsa-project.herokuapp.com/). 
 ## Dokumentaatio
 
 Löytyy 
