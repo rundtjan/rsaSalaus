@@ -18,19 +18,4 @@ Löytyy [tästä](https://github.com/rundtjan/rsaSalaus/tree/master/viikkoraport
 
 ## Ohjeet  
 
-Kloonaa repo. Siirry juurikansioon, ja ajaa:  
-```bash
-poetry install
-```
-Siirry poetry shelliin:  
-```bash
-poetry shell
-```
-ja käynnistä sovellus:
-```bash
-py src/index.py
-```
-Windows-koneella:
-```bash
-python src/index.py
-```
+Löytää [täältä](https://github.com/rundtjan/rsaSalaus/tree/master/dokumentaatio).
