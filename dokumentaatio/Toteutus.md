@@ -10,10 +10,10 @@ Testit löytyvät kansiosta /tests.
 ## Aika- ja tilavaativuudet  
 
 RSA-avainten luonti suurin aikavaativuus on algoritmilla Miller-Rabin, jonka aikavaativuus O(k log^3 n) (tarkempi analyysi tulossa).
-RSA-salauksen aikavaativuus xx
-RSA-dekryptauksen aikavaativuus xx
+RSA-salauksen aikavaativuus on ainakin yhden lähteen mukaan O(log(2)x^3). Oaep-padding-osuuden aikavaativuus on O(n) (SHA512:n aikavaativuus on O(n)), joten tämä ei kasvata aikavaativuutta.
+RSA-dekryptauksen aikavaativuus on sama kuin salaus, algoritmi tekee samoja asioita kuin salaus, mutta hieman eri järjestyksessä.
 
-Tilavaativuudet: tulossa.
+Tilavaativuudesta olen etsinyt luotettavia lähteitä. Tilaa vie tässä ymmärtääkseni ensijaisesti kokoluku-laskelmat.
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
@@ -32,3 +32,5 @@ Tällä hetkellä avaimen pituus kovakoodattu, voisi olla käyttäjän valinta (
 [Myös OAEP](https://datatracker.ietf.org/doc/html/rfc2437#section-9.1.1.2)  
 [Vielä OAEP](https://www.inf.pucrs.br/~calazans/graduate/TPVLSI_I/RSA-oaep_spec.pdf)  
 [OAEP:n Mask Function](https://en.wikipedia.org/wiki/Mask_generation_function)
+[RSA:n aikavaativuus](https://link.springer.com/chapter/10.1007/978-3-030-12385-7_67)
+[SHA512 aikavaativuus](https://iopscience.iop.org/article/10.1088/1742-6596/1314/1/012210/pdf)
