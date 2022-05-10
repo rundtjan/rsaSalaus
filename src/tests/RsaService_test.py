@@ -113,3 +113,36 @@ class TestEncrypt(unittest.TestCase):
         c = rsa_service._rsa_encrypt_block(rsa_service._string_to_bin(raw), n, e)
         decrypted = rsa_service._rsa_decrypt_block(c, n, d)
         self.assertEqual(raw, decrypted)
+
+    def test_rsa_encrypts_a_message(self):
+        (n,e,d) = rsa_key_gen.create()
+        c = rsa_service.encrypt('Is there anybody out there?', n, e)
+        zeros = c.count('0')
+        ones = c.count('1')
+        hashtag = c.count('#')
+        self.assertEqual(zeros+ones+hashtag, len(c))
+
+    def test_rsa_decrypt_decrypts_short_message(self):
+        (n,e,d) = rsa_key_gen.create()
+        message = 'Hello there'
+        c = rsa_service.encrypt(message, n, d)
+        #hashtags = c.split('#')
+        #self.assertEqual(hashtags, [0,2])
+        decrypted = rsa_service.decrypt(c, n, e)
+        self.assertEqual(message, decrypted)
+
+    def test_rsa_decrypt_decrypts_long_message(self):
+        (n,e,d) = rsa_key_gen.create()
+        message = 'I will write a bit longer message here, in order to show, that the message can be split up and then ...'
+        c = rsa_service.encrypt(message, n, d)
+        decrypted = rsa_service.decrypt(c, n, e)
+        self.assertEqual(message, decrypted)
+
+    def test_check_valid_decrypt_message(self):
+        result = rsa_service.check_valid_decrypt_message('This is absolutely not valid')
+        self.assertFalse(result)
+        result = rsa_service.check_valid_decrypt_message('10101100011010101011#')
+        self.assertTrue(result)
+
+    def test_will_raise_valueerror_if_decrypt_is_called_with_bad_data(self):
+        self.assertRaises(ValueError, rsa_service.decrypt, '101010101011101011101011111#', '1234', '1234')
