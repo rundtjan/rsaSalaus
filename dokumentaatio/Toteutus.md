@@ -7,17 +7,18 @@ Sivujen html-pohjat löytyvät kansiosta /templates.
 RSA-salaukseen liittyvät luokat löytyvät kansiosta /rsa_service. Koodi on eritelty sopiviin luokkiin/kokonaisuuksiin.
 Testit löytyvät kansiosta /tests.
 
+## Sovelluksen kuvaus
+
+Sovelluksella voi luoda RSA-avaimet (julkisen ja yksityisen), bittipituudeltaan 1024. Sovelluksella voi myös salata ja purkaa salausta RSA-avaimilla. Salauksessa käytetään OAEP-paddingia, joten sen purkaaminen ilman yksityistä avainta pitäisi olla erittäin epätodennäköistä.
+
 ## Aika- ja tilavaativuudet  
 
-RSA-avainten luonti suurin aikavaativuus on algoritmilla Miller-Rabin, jonka aikavaativuus O(k log^3 n) (tarkempi analyysi tulossa).
+RSA-avainten luonti suurin aikavaativuus on algoritmilla Miller-Rabin, jonka aikavaativuus O(k log^3 n), tämän algoritmin avulla löydetään kahta suurta alkulukua, joka luo perustan sekä yksityiselle että julkiselle avaimelle.
 RSA-salauksen aikavaativuus on ainakin yhden lähteen mukaan O(log(2)x^3). Oaep-padding-osuuden aikavaativuus on O(n) (SHA512:n aikavaativuus on O(n)), joten tämä ei kasvata aikavaativuutta.
 RSA-dekryptauksen aikavaativuus on sama kuin salaus, algoritmi tekee samoja asioita kuin salaus, mutta hieman eri järjestyksessä.
 
 Tilavaativuudesta olen etsinyt luotettavia lähteitä. Tilaa vie tässä ymmärtääkseni ensijaisesti kokoluku-laskelmat.
 
-## Työn mahdolliset puutteet ja parannusehdotukset
-
-Tällä hetkellä avaimen pituus kovakoodattu, voisi olla käyttäjän valinta (tai ainakin voisi löytyä eri vaihtoehtoja).
 
 ## Lähteet
   
